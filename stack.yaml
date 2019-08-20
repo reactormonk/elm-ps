@@ -34,6 +34,7 @@ resolver: lts-13.30
 #  - wai
 packages:
 - .
+- elm
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
@@ -45,10 +46,12 @@ extra-deps:
 - connection-0.3.0
 - purescript-0.13.2@sha256:73fba1f0a8e9d42ae5d35450639eedf12cad47fe20ffa43e9f591eb9fcd62332
 - socks-0.6.0
-# - happy-1.19.9@sha256:f8c774230735a390c287b2980cfcd2703d24d8dde85a01ea721b7b4b4c82944f
-# - network-3.0.1.1@sha256:1a251b790ea98b6f7433f677958f921950780ba6f143d61ba8c0e3f7a9879097
 - language-glsl-0.3.0@sha256:85c1e7bf2cf5d6e604b7a2899c27e2935033425944db200798e57849e64d4c81
-# - network-2.8.0.1@sha256:0f165dffa752d8cde30c2bde86f80609c4f1dc5eeb3182d593041f97839c5b3b
+- time-1.9.3
+- generic-lens-1.2.0.0
+- hspec-golden-0.1.0.0@sha256:5be2da1968d023b9df809e9781060ea094e13b5475b2db84f40df4d3c659d63c
+- simple-get-opt-0.3@sha256:89fac81712948f0e1868c713ba85c5e448963eedb32ec650a5281708f33a2b30
+
 
 
 # Override default flag values for local packages and extra-deps
