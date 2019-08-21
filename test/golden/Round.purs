@@ -1,1 +1,15 @@
- module Round ( round , ceiling , floor , roundCom , ceilingCom , floorCom , roundNum , floorNum , ceilingNum , roundNumCom , floorNumCom , ceilingNumCom , toDecimal , truncate ) where
+ module Round (
+  round ,
+  ceiling ,
+  floor ,
+  roundCom ,
+  ceilingCom ,
+  floorCom ,
+  roundNum ,
+  floorNum ,
+  ceilingNum ,
+  roundNumCom ,
+  floorNumCom ,
+  ceilingNumCom ,
+  toDecimal ,
+  truncate ) where

@@ -1,3 +1,4 @@
 .stack-work/
 elm-ps.cabal
 *~
+.psc-ide-port

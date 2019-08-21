@@ -50,16 +50,16 @@ transformExports loc =
             case export of
               Elm.Lower nameL ->
                 let name = nameToText $ ElmA.toValue nameL
-                in PS.ExportValue () $ PS.Name (PS.SourceToken spaceAnn $ PS.TokLowerName [] name) $ PS.Ident $ name
+                in PS.ExportValue () $ PS.Name (PS.SourceToken (indentAnn 2) $ PS.TokLowerName [] name) $ PS.Ident $ name
               Elm.Upper nameL privacy ->
                 let
                   name = nameToText $ ElmA.toValue nameL
-                  mainType = PS.Name (PS.SourceToken spaceAnn $ PS.TokUpperName [] $ name) $ PSN.ProperName name
+                  mainType = PS.Name (PS.SourceToken (indentAnn 2) $ PS.TokUpperName [] $ name) $ PSN.ProperName name
                 in
                   case privacy of
                     Elm.Private -> PS.ExportType () mainType Nothing
                     Elm.Public region -> PS.ExportType () mainType $ Just $ PS.DataAll () $ PS.SourceToken spaceAnn $ PS.TokSymbolName [] ".."
-              Elm.Operator region name -> PS.ExportOp () $ PS.Name (PS.SourceToken spaceAnn (PS.TokSymbolName [] (nameToText name))) $ PSN.OpName $ nameToText name
+              Elm.Operator region name -> PS.ExportOp () $ PS.Name (PS.SourceToken (indentAnn 2) (PS.TokSymbolName [] (nameToText name))) $ PSN.OpName $ nameToText name
       pure $ PS.Wrapped
         (PS.SourceToken spaceAnn PS.TokLeftParen) 
         (PS.Separated (transform $ head ne) ((\x -> (PS.SourceToken spaceAnn PS.TokComma, transform x)) <$> tail ne))
@@ -88,8 +88,11 @@ transformAlias = undefined
 transformInfix :: Elm.Infix -> PS.Declaration ()
 transformInfix = undefined
 
-newlineAnn :: Int -> PS.TokenAnn
-newlineAnn indent = PS.TokenAnn noSourceRange [PS.Line PS.LF, PS.Space indent] []
+newlineAnn :: PS.TokenAnn
+newlineAnn = PS.TokenAnn noSourceRange [PS.Line PS.LF] []
+
+indentAnn :: Int -> PS.TokenAnn
+indentAnn indent = PS.TokenAnn noSourceRange [PS.Line PS.LF, PS.Space indent] []
 
 spaceAnn :: PS.TokenAnn
 spaceAnn = PS.TokenAnn noSourceRange [PS.Space 1] []
